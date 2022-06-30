@@ -1,0 +1,12 @@
+
+
+
+    Para que el proyecto funcione:
+
+
+
+
+
+           - Importar esta base de datos con nombre "bdd".
+
+           - Utilizar cotejamiento UTF8_general_ci ó UTF8_spanish2_ci.

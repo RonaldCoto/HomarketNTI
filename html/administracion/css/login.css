@@ -1,0 +1,153 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    
+}
+nav{
+    background-color: black;
+    color: white;
+    width: 100%;
+    height: 80px;
+}
+#login{
+    margin-left: 40%;
+    margin-right: 40%;
+}
+#login{
+    margin-top: 5%;
+    margin-left:  32%;
+    margin-right: 32%;
+}
+#login form{
+    width: 400px;
+    text-align: center;
+    padding: 5%;
+}
+#logindatos{
+    border: none;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+#login .img{
+    margin:  18px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 0px;
+}
+.terminos{
+    display: inline;
+}
+p.terminos{
+    font-size: 11px;
+    color: #fff;
+}
+#login input{
+    border-radius: 15px;
+    width: 300px;
+    height: 35px;
+    margin: 10px;
+    
+}
+#login input.terminos{
+    width: 20px;
+    height: 20px;
+}
+.control{
+    padding-left: 45px;
+    font-size: 18px;
+}
+#boton1{
+    background-color: rgba(164,179,87,1);
+    border-radius: 15px;
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    font-family:  Century Gothic;
+    margin-top: 3%;
+    margin-left: -25%;
+    float: left;
+    position: absolute;
+    
+}
+#boton2{
+    background-color: rgba(164,179,87,1);
+    border-radius: 15px;
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    font-family:  Century Gothic;
+    margin-top: 3px;
+    margin-left: 185px;
+    
+}
+.formdatos{
+    margin-top: 5%;
+    margin-left: 8%;
+    color: white;
+}
+.formdatos form{
+    padding: 5px;
+    display: flexblox;
+    width: 1115px;
+    height: 500px;
+    border-radius: 15px;
+    padding: 22px;
+}
+.formdatos fieldset{
+    font-family: Century Gothic;
+    padding: 12px;
+    float: left;
+    width: 25%;
+    margin-top: 5px;
+    border-radius: 10px;
+    height: 332px;
+    margin-left: 13px;
+}
+.formdatos img{
+    float: left;
+    width: 90px;
+    height: 70px;
+    border-radius: 5px;
+    margin:  0px 22px;
+    
+}
+.formdatos button{
+    margin-top: 3px;
+    margin-left: 830px;
+}
+.formdatos p{
+    
+    margin-top: 15%;
+    padding-bottom: 20%;
+    font-size: 48px;
+    text-align: center;
+}
+form{
+    
+    font-family:  Century Gothic;
+    background-color: black;
+    box-shadow: 10px 10px 116px 0px black;
+    
+    
+}
+[required]{
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px #808080;
+}
+:invalid{
+    border-radius:  15px;
+    border-color: rgba(164,179,87,1);
+    
+}
+h1{
+    padding: 6px;
+    color:  #fff;
+}
+#ya{
+    position: absolute;
+    margin-left: -25%;
+    margin-top: 1%;
+}
