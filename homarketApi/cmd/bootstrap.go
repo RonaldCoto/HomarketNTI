@@ -15,6 +15,9 @@ import (
 	platform3 "homarket/internal/signUp/platform"
 	mysql2 "homarket/internal/signUp/platform/storage/mysql"
 	"homarket/internal/signUp/signUpLogic"
+	platform4 "homarket/internal/userControl/platform"
+	mysql4 "homarket/internal/userControl/platform/storage/mysql"
+	"homarket/internal/userControl/userLogic"
 	"homarket/kit/platform"
 	"log"
 	"os"
@@ -53,10 +56,18 @@ func Run() {
 	getCatalogHandler := platfom.NewHttpGetProductsResponseHandler("/v1/catalog/products", gettingCatalog)
 	/*END CATALOG*/
 
+	/*USERS*/
+	repoUser := mysql4.NewUserRepo(db)
+	servUser := userLogic.NewService(repoUser)
+	gettingUsers := platform4.MakeGetUserResponseEndpoint(servUser)
+	getHandlerUser := platform4.NewHttpGetUserResponseHandler("/v1/users/management", gettingUsers)
+	/*END USERS*/
+
 	svc := platform.NewServer(kitlogger)
 	svc.RegisterRoutes("/v1/catalog/inventory", getHandler)
 	svc.RegisterRoutes("/v1/user/signup", setHandler)
 	svc.RegisterRoutes("/v1/catalog/products", getCatalogHandler)
+	svc.RegisterRoutes("/v1/users/management", getHandlerUser)
 	svc.Run("90")
 }
 
