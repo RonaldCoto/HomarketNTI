@@ -5,14 +5,15 @@
     <h1>Administración de productos</h1>
 
  <?php
+  include '../php/consumeServices.php';
 include_once './bd/conexion.php';
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
-
-$consulta = "SELECT id, nombre, precio, existencia, imagen, id_categoria, id_subcategoria FROM productos";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+//$objeto = new Conexion();
+//$conexion = $objeto->Conectar();
+$resultado=getWithParamethers("http://localhost:90/v1/catalog/inventory",null,1);
+//$consulta = "SELECT id, nombre, precio, existencia, imagen, id_categoria, id_subcategoria FROM productos";
+//$resultado = $conexion->prepare($consulta,null,3);
+//$resultado->execute();
+//$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -43,7 +44,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                         </thead>
                         <tbody>
                             <?php                            
-                            foreach($data as $dat) {                                                        
+                            foreach($resultado as $dat) {                                                        
                             ?>
                             <tr>
                                 <td><?php echo $dat['id'] ?></td>

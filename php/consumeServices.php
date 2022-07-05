@@ -7,15 +7,16 @@ function getWithParamethers($url, $params,$typeParams){
               'method'=>"GET",
               'header'=>"idSubCategoria: ".$params.""                            
             )
-          );              
+          );
+          $context=stream_context_create($options);
+          $response=file_get_contents($url,false,$context);              
     }elseif(typeParams==2){
         //Implementación con JSON
     }else{
-        //Implementación sin parametros
+        $response=file_get_contents($url,false,null);  
     }
     
-    $context=stream_context_create($options);
-    $response=file_get_contents($url,false,$context);
+   
     return json_decode($response,true);
 }
      	
