@@ -144,16 +144,17 @@
     	<div class="container">
 
  <?php
+ include '../php/consumeServices.php';
      $link = new mysqli("localhost","root","","bdd");
   $consulta="SELECT * from  productos where id_subcategoria=6 and existencia>0";
    $i=1;
 
-    $te=$link ->query($consulta);
+    $te=getWithParamethers("http://localhost:90/v1/catalog/products",6,1);
         
                 echo  "<div class='row'>";
         
 
-        while($tete=$te->fetch_assoc() ) {
+                foreach($te as $tete) {
             echo '<style type="text/css">
                   form{ display: contents;}
                   </style>';
