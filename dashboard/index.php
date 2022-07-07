@@ -6,13 +6,10 @@
 
  <?php
 include_once './bd/conexion.php';
-$objeto = new Conexion();
-$conexion = $objeto->Conectar();
+include '../php/consumeServices.php';
 
-$consulta = "SELECT id, nombre, email, telefono, password, Categoria FROM user";
-$resultado = $conexion->prepare($consulta);
-$resultado->execute();
-$data=$resultado->fetchAll(PDO::FETCH_ASSOC);
+$resultado = getWithParamethers("http://localhost:90/v1/users/management",null,1);
+
 ?>
 
 
@@ -42,7 +39,7 @@ $data=$resultado->fetchAll(PDO::FETCH_ASSOC);
                         </thead>
                         <tbody>
                             <?php                            
-                            foreach($data as $dat) {                                                        
+                            foreach($resultado as $dat) {                                                        
                             ?>
                             <tr>
                                 <td><?php echo $dat['id'] ?></td>

@@ -144,20 +144,20 @@
     	<div class="container">
 
  <?php
-     $link = new mysqli("localhost","root","","bdd");
-  $consulta="SELECT * from  productos where id_subcategoria=14 and existencia>0";
-   $i=1;
+    include '../php/consumeServices.php';
+    
+    $link = new mysqli("localhost","root","","bdd");
+    $i=1;
 
-    $te=$link ->query($consulta);
-        
-                echo  "<div class='row'>";
-        
+    $te=getWithParamethers("http://localhost:90/v1/catalog/products",14,1);
 
-        while($tete=$te->fetch_assoc() ) {
+    echo  "<div class='row'>";
+
+    foreach($te as $tete) {
             echo '<style type="text/css">
                   form{ display: contents;}
                   </style>';
-   if (isset($_SESSION["usera"] )){
+    if (isset($_SESSION["usera"] )){
 
        echo "<form action='../php/compra.php' method='Post' name='frm$i' > ";
      

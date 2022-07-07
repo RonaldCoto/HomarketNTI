@@ -141,69 +141,64 @@
     	<div class="container">
 
  <?php
-     $link = new mysqli("localhost","root","","bdd");
-  $consulta="SELECT * from  productos where id_subcategoria=7  and existencia>0";
-   $i=1;
+    include '../php/consumeServices.php';
 
-    $te=$link ->query($consulta);
-        
-                echo  "<div class='row'>";
-        
+    $link = new mysqli("localhost","root","","bdd");
+    $consulta="SELECT * from  productos where id_subcategoria=7  and existencia>0";
+    $i=1;
 
-        while($tete=$te->fetch_assoc() ) {
-            echo '<style type="text/css">
-                  form{ display: contents;}
-                  </style>';
-   if (isset($_SESSION["usera"] )){
+    //$te=$link ->query($consulta);
+    $te=getWithParamethers("http://localhost:90/v1/catalog/products",7,1);
+  
+    echo  "<div class='row'>";
 
-       echo "<form action='../php/compra.php' method='Post' name='frm$i' > ";
-     
-        } else{
-            echo "<form action='./login.php' method='Post' name='frm$i'>";
-            
-        }        
-   
-        echo "<div class='col-md-6 col-lg-3 ftco-animate'>";
-        echo "<div class='product'>";
-        echo '<a href="#" class="img-prod"><img class="img-fluid" src="../html/administracion/php/img/'.$tete['imagen'].'" alt="Colorlib Template">';
-        echo "<div class='overlay'></div>";
-        echo "</a>";
-        echo "<div class='text py-3 pb-4 px-3 text-center'>";
-        echo "<h3><a href='#'>".$tete['nombre']."</a></h3>";
-        echo "<input type='number' min='1' max='100'  value='1' name='cantidad' required />";
-        echo "<div class='d-flex'>";
-        echo "<div class='pricing'>";
-        echo "<p class='price'><span class='price-sale'>$".$tete['precio']."</span></p>";
-        echo "</div>";
-        echo "</div>";
-        echo "<div class='bottom-area d-flex px-3'>";
-        echo "<div class='m-auto d-flex'>";
-        echo "<input type='submit'  name='compra' class='buy-now d-flex justify-content-center align-items-center mx-1' value=' '  />";
-        echo "<input type='hidden' value=".$tete['id']." name='codigo' />";
-        echo "</a>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</div>";
-        echo "</form>";
-          $i++;
-        if (isset($_SESSION["usera"] )){
-           
+    //while($tete=$te->fetch_assoc() ) {
+    foreach($te as $tete) {
+      echo '<style type="text/css">
+            form{ display: contents;}
+            </style>';
+      if (isset($_SESSION["usera"] )){
+        echo "<form action='../php/compra.php' method='Post' name='frm$i' > ";
+      } else {
+        echo "<form action='./login.php' method='Post' name='frm$i'>";
+      }
+      echo "<div class='col-md-6 col-lg-3 ftco-animate'>";
+      echo "<div class='product'>";
+      echo '<a href="#" class="img-prod"><img class="img-fluid" src="../html/administracion/php/img/'.$tete['imagen'].'" alt="Colorlib Template">';
+      echo "<div class='overlay'></div>";
+      echo "</a>";
+      echo "<div class='text py-3 pb-4 px-3 text-center'>";
+      echo "<h3><a href='#'>".$tete['nombre']."</a></h3>";
+      echo "<input type='number' min='1' max='100'  value='1' name='cantidad' required />";
+      echo "<div class='d-flex'>";
+      echo "<div class='pricing'>";
+      echo "<p class='price'><span class='price-sale'>$".$tete['precio']."</span></p>";
+      echo "</div>";
+      echo "</div>";
+      echo "<div class='bottom-area d-flex px-3'>";
+      echo "<div class='m-auto d-flex'>";
+      echo "<input type='submit'  name='compra' class='buy-now d-flex justify-content-center align-items-center mx-1' value=' '  />";
+      echo "<input type='hidden' value=".$tete['id']." name='codigo' />";
+      echo "</a>";
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+      echo "</div>";
+      echo "</form>";
+      $i++;
+      if (isset($_SESSION["usera"] )) {
         if (isset($_POST[$tete['id']])) {
-
-        require("../php/compra.php");
-     
+          require("../php/compra.php");
         } else{
-            if (isset($_POST[$tete['id']])) {
-        require("./login.php");
-            
-        }               
-}
-}
-
-}
-            echo "</div>";        
+          if (isset($_POST[$tete['id']])) {
+            require("./login.php");
+          }
+        }
+      }
+    }
+    
+    echo "</div>";        
 
 
 ?>
