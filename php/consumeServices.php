@@ -16,7 +16,7 @@ function getWithParamethers($url, $params,$typeParams){
             'http' => array(
                 'header'  => "Content-type: application/json",
                 'method'  => "POST",
-                'content' => http_build_query($params)
+                'content' => json_encode($params)
             )
         );
 
